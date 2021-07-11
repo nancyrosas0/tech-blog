@@ -22,8 +22,8 @@ router.get('/', (req, res) => {
         model: Comment,
         as: 'comments',
         attributes: ['id', 'comment_text', 'user_id']
-      },
-    ],
+      }
+    ]
   })
     .then(dbPostData => {
         if (!dbPostData) {
@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
         }
       const posts = dbPostData.map(post => post.get({ plain: true }));
 
-      res.render('homepage', { posts, loggedIn: req.session.loggedIn });
+      res.render('home', { posts, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
       console.log(err);
@@ -43,7 +43,7 @@ router.get('/login', (req, res) => {
   res.render('login', { loggedIn: req.session.loggedIn });
 });
 
-router.get('/viewpost/:id', (req, res) => {
+router.get('/post/:id', (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id
