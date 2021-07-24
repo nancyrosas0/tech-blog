@@ -146,7 +146,7 @@ router.get('/dashboard', (req, res) => {
         const post = dbPostData.map(post => post.get({ plain: true }));
         // pass data to template
         res.render('dashboard', { 
-            posts, 
+            post, 
             loggedIn: req.session.loggedIn,
           });
       })
